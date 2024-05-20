@@ -1,95 +1,35 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+
+import { useContext, useEffect } from "react";
+import FetchMovies from "./component/FetchMovies";
+import Logo from "./component/Logo";
+import Header from "./component/Logo";
+import MovieContent from "./component/MovieContent";
+import { MoviesContext, MoviesContextProvider } from "./store/context";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+
+return (
+  <>
+    <header className='header'>
+      {/* <Box> */}
+        <Logo />
+        <div className='text'>
+          <h1>Find your movies here!</h1>
+          <small>Explore our gallery full of exciting films from all around the globe only for your entertainments. No hidden charges or disturbing ads.</small>
+          <Box><Flex>
+            <Link href='/search/by_theatre'><Box w='fit-content' className="button"><Text color='black' fontSize='13px' fontWeight='bold'>By Theatre</Text></Box></Link>
+            <Link href='/search/by_timeslot'><Box w='fit-content' className="button"><Text color='black' fontSize='13px' fontWeight='bold'>By Timeslot</Text></Box></Link>
+          </Flex>
+          </Box>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {/* </Box> */}
+    </header>
+      <main>
+        <FetchMovies link='http://localhost:4000/newMovie' />
+      </main>
+  </>
   );
 }
